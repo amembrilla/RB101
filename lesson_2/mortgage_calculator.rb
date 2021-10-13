@@ -1,46 +1,25 @@
-=begin
-
-ASSIGNMENT:
-
-Collect 3 pieces of iniformation from the user:
-1) Loan amount
-2) Annual Percentage Rate
-3) Loan Duration
-
-calculated and return Monthly payment to the user.
-
-CONSIDERATIONS:
-
-Use Monthly Payment equation provided:
-- m = p * (j / (1 - (1 + j)**(-n)))
-
-where:
-- m = monthly payment
-- p = loan amount
-- j = monthly interest rate
-- n = loan duration in months
-
-ALGORITHM FLOW:
-
-1) prompt "Welcome" message
-2) begin Main Loop
-3) set loan amount to = get_loan_amount
-4) set monthly interest to = get_apr
-5) set loan duration to = get_loan_duration
-6) calculate monthly paymnet
-7) format and print monthly playment
-8) ask user to calculate again
-9) prompt "Thank you" message
-
-=end
+# CONSTANT
+VALID_YES_NO = ['yes', 'y', 'no', 'n']
 
 # METHODS
+def clear_screen
+  system "clear"
+end
+
+def new_line
+  puts('')
+end
+
 def prompt(message)
   puts(">> #{message}")
 end
 
 def invalid_number?(num)
-  num.empty?() || num.to_f <= 0 # returns true or false
+  num.empty?() || num.to_i <= 0 # returns true or false
+end
+
+def invalid_interest?(num)
+  num.empty?() || num.to_f < 0
 end
 
 def get_loan_amount
@@ -52,21 +31,25 @@ def get_loan_amount
     break unless invalid_number?(loan_amount)
     prompt("Hmmm... Something seems off. Please enter a valid loan amount.")
   end
-  loan_amount = loan_amount.to_f
+  loan_amount.to_f
 end
 
 def get_apr
-  monthly_interest = nil
+  apr = nil
   prompt("Please enter your Annual Percentage Rate(APR):")
   prompt("Example: Enter 5 for 5% or 2.5 for 2.5%")
 
   loop do
-    monthly_interest = gets.chomp
-    break unless invalid_number?(monthly_interest)
+    apr = gets.chomp
+    break unless invalid_interest?(apr)
     prompt("Hmmm... Something seems off. Please enter a valid APR.")
   end
 
-  monthly_interest = (monthly_interest.to_f / 100) / 12
+  apr.to_f
+end
+
+def convert_apr(apr)
+  (apr / 100) / 12
 end
 
 def get_loan_duration
@@ -80,34 +63,66 @@ def get_loan_duration
     Please enter a valid loan duration(in years).")
   end
 
-  loan_duration = loan_duration.to_f * 12
+  loan_duration.to_i * 12
 end
 
-def get_monthly_payment(get_loan_amount, get_apr, get_loan_duration)
-  get_loan_amount * (get_apr /
-  (1 - (1 + get_apr)**(- get_loan_duration)))
+def calc_monthly_payment(loan_amount, apr, loan_duration)
+  loan_amount * (apr /
+  (1 - (1 + apr)**(-loan_duration)))
 end
 
-def format_payment(monthly_payment)
-  prompt("Your Monthly Payment is: $#{format('%.2f', monthly_payment)}.")
+def output_result(loan_amount, apr, loan_duration, monthly_payment)
+  prompt("For a loan amount of: $#{format('%.2f', loan_amount)}")
+  prompt("With an interest rate of: #{apr}%")
+  prompt("And a loan duration of: #{loan_duration} months")
+  prompt("Your monthly payment will be:")
+  sleep(2)
+  prompt("$#{format('%.2f', monthly_payment)}!")
+  new_line
+end
+
+def get_calc_again?
+  calc_again = ''
+  prompt("Would you like to calculate another payment? ('y' / 'n')")
+
+  loop do
+    calc_again = gets.chomp.downcase
+    break if VALID_YES_NO.include?(calc_again)
+    prompt("Hmmm... Something seems off. Please enter 'y' or 'n'")
+  end
+
+  case calc_again
+  when 'y', 'yes'
+    true
+  when 'n', 'no'
+    false
+  end
 end
 
 # Calculator Main Loop
+clear_screen
 prompt("Welcome to the Payment Calculator!")
 
 loop do
   loan_amount = get_loan_amount
-  monthly_interest = get_apr
+  clear_screen
+
+  apr = get_apr
+  clear_screen
+
+  monthly_interest = convert_apr(apr)
+
   loan_duration = get_loan_duration
+  clear_screen
 
   monthly_payment =
-    get_monthly_payment(loan_amount, monthly_interest, loan_duration)
+    calc_monthly_payment(loan_amount, monthly_interest, loan_duration)
 
-  format_payment(monthly_payment)
+  output_result(loan_amount, apr, loan_duration, monthly_payment)
 
-  prompt("Would you like to calculate another payment?")
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  break unless get_calc_again?
+  clear_screen
 end
 
+clear_screen
 prompt("Thank you for using the Payment Calculator! See ya!")
