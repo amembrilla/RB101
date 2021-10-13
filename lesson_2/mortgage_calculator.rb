@@ -19,7 +19,7 @@ def invalid_number?(num)
 end
 
 def invalid_interest?(num)
-  num.empty?() || num.to_f < 0
+  num.empty?() || num.to_f <= 0
 end
 
 def get_loan_amount
