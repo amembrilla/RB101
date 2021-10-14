@@ -1,5 +1,5 @@
 # CONSTANT
-VALID_YES_NO = ['yes', 'y', 'no', 'n']
+VALID_YES_NO = %w(yes y no n)
 
 # METHODS
 def clear_screen
@@ -19,7 +19,7 @@ def invalid_number?(num)
 end
 
 def invalid_interest?(num)
-  num.empty?() || num.to_f <= 0
+  num.empty?() || num.to_f < 0
 end
 
 def get_loan_amount
@@ -67,8 +67,12 @@ def get_loan_duration
 end
 
 def calc_monthly_payment(loan_amount, apr, loan_duration)
-  loan_amount * (apr /
-  (1 - (1 + apr)**(-loan_duration)))
+  if apr == 0
+    loan_amount / loan_duration
+  else
+    loan_amount * (apr /
+    (1 - (1 + apr)**(-loan_duration)))
+  end
 end
 
 def output_result(loan_amount, apr, loan_duration, monthly_payment)
