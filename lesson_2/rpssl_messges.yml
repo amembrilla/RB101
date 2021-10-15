@@ -5,7 +5,7 @@ some new additions; Spock and Lizard. The rules of the game is as follows:\n
 Scissors cuts Paper; Paper covers Rock; Rock crushes Lizard;\n
 Lizard poisons Spock; Spock smashes Scissors; Scissors decapitates Lizard;\n
 Lizard eats Paper; Paper disproves Spock; Spock vaporizes Rock; and finally\n
-Rock crushes Scissors.\
+Rock crushes Scissors.\n
 
 We know that's a lot to take in, so if you'reconfused, don't worry. We'll\n
 help you out by declaring the winner after each round.\n
