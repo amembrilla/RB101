@@ -63,3 +63,5 @@ loop do
 end
 
 prompt("Thank you for using Car Loan Calculator! Good bye!")
+
+

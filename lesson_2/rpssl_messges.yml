@@ -1,0 +1,27 @@
+WELCOME: "Welcome to Rock, Paper, Scissors, Spock, Lizard! This is the same\n
+game as the classic Rock, Paper, Scissors we all grew up playing, with\n
+some new additions; Spock and Lizard. The rules of the game is as follows:\n
+
+Scissors cuts Paper; Paper covers Rock; Rock crushes Lizard;\n
+Lizard poisons Spock; Spock smashes Scissors; Scissors decapitates Lizard;\n
+Lizard eats Paper; Paper disproves Spock; Spock vaporizes Rock; and finally\n
+Rock crushes Scissors.\
+
+We know that's a lot to take in, so if you'reconfused, don't worry. We'll\n
+help you out by declaring the winner after each round.\n
+
+The game will be best of 3 format.\n
+
+Press the Enter/Return key when you are ready to start. Good Luck!"
+CHOICE_MSG: "Please make your selection:\n
+Rock(r), Paper(p), Scissors(sc), Spock (sp) or Lizard(l)"
+name: "Please enter your name:"
+invalid_name: "Invalid entry. Please enter your name."
+valid_choice: "Come on #{user_name}. Invalid choice. Please try again."
+game_winner: "Congradulations! You've beat the computer!"
+game_loser: "Womp womp.... Looks like you've been beat by the cpu."
+press_enter: "Press the enter/ return key to start the next round."
+go_again: "Would you like to play again?('y'/'n)"
+go_again_error: "Hmm... something seems off. Please try again."
+thank_you: "Thank you for playing Rock, Paper, Scissors, Spock, Lizard! See ya,"
+  

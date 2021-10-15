@@ -5,11 +5,17 @@ en:
   number1: "What's the first number?"
   valid_number: "Hmm... that doesn't look like a valid number."
   number2: "What's the second number?"
+  operator_prompt: "What operation would you like to perform?\n
+    1) add\n
+    2) subtract\n
+    3) multiply\n
+    4) divide"
   operator: "Must choose 1, 2, 3, or 4."
   operation_to_message: "the two numbers..."
   result: "The result is"
   another_calculation: "Do you want to perform another calculation? ('Y' to calculate again)"
-  thank_you: "Thank you for using the calculator. Good bye!"
+  thank_you: "Thank you for using the calculator. Good bye"
+
 
 es:
   welcome: "¡Bienvenido a Calculator! Introduzca su nombre:"
@@ -18,8 +24,13 @@ es:
   number1: "¿Cuál es el primer número?"
   valid_number: "Hmm... eso no parece un número válido."
   number2: "¿Cuál es el segundo número?"
+  operator_prompt: "¿Qué operación le gustaría realizar?\n
+     1) agregar\n
+     2) restar\n
+     3) multiplica\n
+     4) dividir"
   operator: "Debe elegir 1, 2, 3 o 4."
   operation_to_message: "los dos números..."
   result: "El resultado es"
   another_calculation: "¿Quieres realizar otro cálculo? ('Y' para calcular de nuevo)"
-  thank_you: "Gracias por usar la calculadora. ¡Adiós!"
+  thank_you: "Gracias por usar la calculadora. ¡Adiós"
