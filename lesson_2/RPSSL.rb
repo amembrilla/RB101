@@ -44,7 +44,7 @@ def clear_screen
 end
 
 def press_enter_to_continue
-    _ = gets
+  _ = gets
   clear_screen
 end
 
@@ -130,7 +130,7 @@ def print_score(user_name, user, cpu)
   newline
 end
 
-def someone_won_game?(user_score,cpu_score)
+def someone_won_game?(user_score, cpu_score)
   user_score == WINNING_SCORE || cpu_score == WINNING_SCORE
 end
 
@@ -183,7 +183,7 @@ loop do
     sleep(0.5)
     print_score(user_name, scores[:user_score], scores[:cpu_score])
 
-    break if someone_won_game?(scores[:user_score],scores[:cpu_score])
+    break if someone_won_game?(scores[:user_score], scores[:cpu_score])
     sleep(1)
     prompt(MESSAGES['press_enter'])
     press_enter_to_continue
