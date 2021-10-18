@@ -124,20 +124,20 @@ def adjust_score(winner, scores)
   end
 end
 
-def print_score(user_name, user, cpu)
-  prompt("#{user_name}'s score is: #{user}")
-  prompt("CPU score is: #{cpu}")
+def print_score(user_name, scores)
+  prompt("#{user_name}'s score is: #{scores[:user_score]}")
+  prompt("CPU score is: #{scores[:cpu_score]}")
   newline
 end
 
-def someone_won_game?(user_score, cpu_score)
-  user_score == WINNING_SCORE || cpu_score == WINNING_SCORE
+def someone_won_game?(scores)
+  scores.any? { |player, score| score == WINNING_SCORE }
 end
 
-def print_game_winner(user_score, cpu_score)
-  if user_score == WINNING_SCORE
+def print_game_winner(scores)
+  if scores[:user_score] == WINNING_SCORE
     prompt(MESSAGES['game_winner'])
-  elsif cpu_score == WINNING_SCORE
+  elsif scores[:cpu_score] == WINNING_SCORE
     prompt(MESSAGES['game_loser'])
   end
 end
@@ -150,6 +150,7 @@ def play_again?
     play_again = gets.strip.downcase
     break if PLAY_ANOTHER.include?(play_again)
     puts(MESSAGES['go_again_error'])
+    newline
   end
 
   play_again == 'y' || play_again == 'yes'
@@ -164,7 +165,7 @@ user_name = get_user_name
 loop do
   scores = { user_score: 0, cpu_score: 0 }
 
-  while someone_won_game?(scores[:user_score], scores[:cpu_score]) == false
+  while someone_won_game?(scores) == false
     clear_screen
 
     user_choice = get_choice(user_name)
@@ -181,15 +182,15 @@ loop do
     adjust_score(winner, scores)
 
     sleep(0.5)
-    print_score(user_name, scores[:user_score], scores[:cpu_score])
+    print_score(user_name, scores)
 
-    break if someone_won_game?(scores[:user_score], scores[:cpu_score])
+    break if someone_won_game?(scores)
     sleep(1)
     prompt(MESSAGES['press_enter'])
     press_enter_to_continue
   end
 
-  print_game_winner(scores[:user_score], scores[:cpu_score])
+  print_game_winner(scores)
   newline
 
   break unless play_again?
