@@ -131,7 +131,7 @@ def print_score(user_name, scores)
 end
 
 def someone_won_game?(scores)
-  scores.any? { |player, score| score == WINNING_SCORE }
+  scores.any? { |_player, score| score == WINNING_SCORE }
 end
 
 def print_game_winner(scores)
